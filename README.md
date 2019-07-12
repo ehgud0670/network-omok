@@ -1,8 +1,4 @@
-# README
-
-
-
-## Network Omok
+# Network Omok
 
 * TCP/IP 통신을 이용하여 사용자 간에 오목게임을 가능하게 하는 소프트웨어
 
