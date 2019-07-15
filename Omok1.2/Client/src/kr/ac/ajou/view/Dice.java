@@ -47,7 +47,9 @@ public class Dice implements Displayable {
 
     private void drawFrame(PApplet p) {
         p.fill(Color.WHITE.getValue());
+        p.strokeWeight(2);
         p.rect(rectX, rectY, diameter, diameter, CURVE_VALUE);
+        p.strokeWeight(1);
     }
 
     private void drawText(PApplet p) {

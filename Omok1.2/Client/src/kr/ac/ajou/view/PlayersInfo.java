@@ -41,13 +41,15 @@ public class PlayersInfo implements Displayable {
     }
 
     private void drawFrame(PApplet p) {
-        p.fill(Color.GREY.getValue());
+        p.fill(Color.DARK_GREY.getValue());
+        p.strokeWeight(2);
         p.rect(rectX, rectY, width, height);
+        p.strokeWeight(1);
     }
 
     private void drawMineLabel(PApplet p) {
         p.textAlign(p.CENTER, p.CENTER);
-        p.fill(Color.BLACK.getValue());
+        p.fill(Color.LIGHT_GREY.getValue());
         p.textSize(TEXT_SIZE);
         if (clientNum.getClientNum() == 1) {
             p.text(mineLabel, rectX + (3 * width / 5), rectY + (height / 4));
@@ -58,7 +60,7 @@ public class PlayersInfo implements Displayable {
 
     private void drawOpponentLabel(PApplet p) {
         p.textAlign(p.CENTER, p.CENTER);
-        p.fill(Color.BLACK.getValue());
+        p.fill(Color.LIGHT_GREY.getValue());
         p.textSize(TEXT_SIZE);
         if (clientNum.getClientNum() == 1) {
             p.text(opponentLabel, rectX + (3 * width / 5), rectY + ((2 * height) / 3));

@@ -78,14 +78,14 @@ public class Window extends PApplet {
                 ConstantWindow.BUTTON_DIAMETER,
                 ConstantWindow.BUTTON_DIAMETER);
         readyButton.setLabel(ConstantWindow.READY_BUTTON_LABEL);
-        readyButton.setColor(Color.GREY.getValue());
+        readyButton.setColor(Color.DARK_GREY.getValue());
 
         exitButton = new Button(ConstantWindow.EXIT_BUTTON_X,
                 ConstantWindow.EXIT_BUTTON_Y,
                 ConstantWindow.BUTTON_DIAMETER,
                 ConstantWindow.BUTTON_DIAMETER);
         exitButton.setLabel(ConstantWindow.EXIT_BUTTON_LABEL);
-        exitButton.setColor(Color.GREY.getValue());
+        exitButton.setColor(Color.DARK_GREY.getValue());
 
         playersInfo = new PlayersInfo(ConstantWindow.PLAYERS_INFO_X,
                 ConstantWindow.PLAYERS_INFO_Y,
@@ -154,6 +154,7 @@ public class Window extends PApplet {
     @Override
     public void draw() {
 
+        this.background(Color.GREY.getValue());
         readyButton.display(this);
         exitButton.display(this);
         omokPlate.display(this);
@@ -347,7 +348,7 @@ public class Window extends PApplet {
     public void mousePressed() {
         if (mouseButton == LEFT && mouseValue == HAND) {
             if (readyButton.overRect(mouseX, mouseY)) {
-                if (readyButton.getColor() == Color.GREY.getValue()) {
+                if (readyButton.getColor() == Color.DARK_GREY.getValue()) {
                     sendReady();
                     makeReadyButtonBlack();
                 } else {
@@ -380,7 +381,7 @@ public class Window extends PApplet {
                 ConstantWindow.BUTTON_DIAMETER,
                 ConstantWindow.BUTTON_DIAMETER);
         readyButton.setLabel(ConstantWindow.READY_BUTTON_LABEL);
-        readyButton.setColor(Color.GREY.getValue());
+        readyButton.setColor(Color.DARK_GREY.getValue());
     }
 
     private void makeReadyButtonBlack() {

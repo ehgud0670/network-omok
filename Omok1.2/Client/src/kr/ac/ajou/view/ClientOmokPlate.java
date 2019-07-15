@@ -59,11 +59,18 @@ public class ClientOmokPlate implements Displayable {
     }
 
     private void drawFrame(PApplet p) {
+        p.noStroke();
+        p.fill(Color.GREY.getValue());
         p.rect(externalXValue, externalYValue, length, length);
+
+        p.fill(Color.LIGHT_GREY.getValue());
+        p.stroke(Color.BLACK.getValue());
+        p.strokeWeight(2);
+        p.rect(externalXValue + edge , externalYValue + edge,  (NUM - 1) * block, (NUM - 1) * block);
     }
 
     private void drawCoordinate(PApplet p) {
-
+        p.strokeWeight(1);
         for (int i = 0; i < NUM; i++) {
             p.line(externalXValue + edge, externalYValue + edge + i * block,
                     externalXValue + edge + (NUM - 1) * block, externalYValue + edge + i * block);

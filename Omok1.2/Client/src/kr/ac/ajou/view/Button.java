@@ -39,12 +39,14 @@ public class Button implements Displayable {
 
     private void drawFrame(PApplet p) {
         p.fill(color);
+        p.strokeWeight(2);
         p.rect(rectX, rectY, width, height);
+        p.strokeWeight(1);
     }
 
     private void drawText(PApplet p) {
         p.textAlign(p.CENTER, p.CENTER);
-        p.fill(Color.WHITE.getValue());
+        p.fill(Color.LIGHT_GREY.getValue());
         p.textSize(TEXT_SIZE);
         p.text(label, rectX + (width / 2), rectY + (height / 2));
     }
