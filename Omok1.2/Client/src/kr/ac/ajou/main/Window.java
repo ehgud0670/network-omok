@@ -23,7 +23,7 @@ public class Window extends PApplet {
     private float myDiceY;
     private float oppoDiceX;
     private float oppoDiceY;
-    private float diecDiameter;
+    private float diceDiameter;
 
     private ClientOmokPlate omokPlate;
     private Button readyButton;
@@ -42,7 +42,6 @@ public class Window extends PApplet {
     private int myDiceNum;
     private int opponentDiceNum;
 
-
     private boolean myTurn;
 
     private int myColor;
@@ -51,7 +50,7 @@ public class Window extends PApplet {
     private boolean countDownFlag;
     private boolean resultMessageFlag;
 
-    //client
+    //Client
     private Socket socket;
     private ClientNum clientNum;
     private GameState gameState;
@@ -101,7 +100,7 @@ public class Window extends PApplet {
         myDiceY = getMyDiceY();
         oppoDiceX = getOppoDiceX();
         oppoDiceY = getOppoDiceY();
-        diecDiameter = getDiecDiameter();
+        diceDiameter = getDiecDiameter();
 
 
         gameResultX = getGameResultX();
@@ -291,9 +290,9 @@ public class Window extends PApplet {
     }
 
     private void makeDices() {
-        myDice = new Dice(myDiceX, myDiceY, diecDiameter, myDiceNum);
+        myDice = new Dice(myDiceX, myDiceY, diceDiameter, myDiceNum);
         myDice.setLabel("mine");
-        opponentDice = new Dice(oppoDiceX, oppoDiceY, diecDiameter, opponentDiceNum);
+        opponentDice = new Dice(oppoDiceX, oppoDiceY, diceDiameter, opponentDiceNum);
         opponentDice.setLabel("opponent");
     }
 
@@ -403,7 +402,6 @@ public class Window extends PApplet {
     //client
     private void connect() {
         try {
-
             socket = new Socket();
             socket.connect(new InetSocketAddress("127.0.0.1", 5500));
             System.out.println("[서버 연결 성공]");
@@ -417,7 +415,6 @@ public class Window extends PApplet {
     }
 
     private void sendReady() {
-
         ReadyData ready = new ReadyData(ReadyData.READY);
         Gson gson = new Gson();
 
@@ -425,18 +422,15 @@ public class Window extends PApplet {
         String type = ConstantProtocol.READY;
 
         sendToServer(data, type);
-
     }
 
     private void sendNotReady() {
-
         ReadyData notReady = new ReadyData(ReadyData.NOT_READY);
         Gson gson = new Gson();
 
         String data = gson.toJson(notReady);
         String type = ConstantProtocol.NOT_READY;
         sendToServer(data, type);
-
     }
 
     private void sendLocation(int row, int col) {
