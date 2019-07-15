@@ -20,6 +20,9 @@ public class PlayersInfo implements Displayable {
     private String mineLabel;
     private String opponentLabel;
 
+    private StoneView mineStoneView;
+    private StoneView opponentStoneView;
+
     private ClientNum clientNum;
 
 
@@ -31,6 +34,11 @@ public class PlayersInfo implements Displayable {
         clientNum = new ClientNum(NONE);
         mineLabel = "";
         opponentLabel = "";
+
+
+        // INIT StoneViews
+        mineStoneView = null;
+        opponentStoneView = null;
     }
 
     @Override
@@ -38,7 +46,35 @@ public class PlayersInfo implements Displayable {
         drawFrame(p);
         drawMineLabel(p);
         drawOpponentLabel(p);
+
+        if (mineStoneView != null) {
+            drawMineStoneView(p);
+        }
+
+        if (opponentStoneView != null) {
+            drawOpponentStoneView(p);
+        }
     }
+
+    private void drawMineStoneView(PApplet p) {
+        p.fill(mineStoneView.getColor());
+        if (clientNum.getClientNum() == 1) {
+            p.ellipse(rectX + (1 * width / 5), rectY + (height / 4) + 5, 35, 35);
+        } else if (clientNum.getClientNum() == 2) {
+            p.ellipse(rectX + (1 * width / 5), rectY + ((2 * height) / 3) + 5, 35, 35);
+        }
+
+    }
+
+    private void drawOpponentStoneView(PApplet p) {
+        p.fill(opponentStoneView.getColor());
+        if (clientNum.getClientNum() == 1) {
+            p.ellipse(rectX + (1 * width / 5), rectY + ((2 * height) / 3) + 5, 35, 35);
+        } else if (clientNum.getClientNum() == 2) {
+            p.ellipse(rectX + (1 * width / 5), rectY + (height / 4) + 5, 35, 35);
+        }
+    }
+
 
     private void drawFrame(PApplet p) {
         p.fill(Color.DARK_GREY.getValue());
@@ -69,6 +105,11 @@ public class PlayersInfo implements Displayable {
         }
     }
 
+    public void stoneViewsInit() {
+        mineStoneView = null;
+        opponentStoneView = null;
+    }
+
     public void setMineLabel(String mineLabel) {
         this.mineLabel = mineLabel;
     }
@@ -79,5 +120,13 @@ public class PlayersInfo implements Displayable {
 
     public void setClientNum(ClientNum clientNum) {
         this.clientNum = clientNum;
+    }
+
+    public void setMineStoneView(int color) {
+        mineStoneView = new StoneView(color);
+    }
+
+    public void setOpponentStoneView(int color) {
+        opponentStoneView = new StoneView(color);
     }
 }

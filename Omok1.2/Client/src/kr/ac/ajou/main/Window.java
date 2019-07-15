@@ -91,7 +91,6 @@ public class Window extends PApplet {
                 ConstantWindow.PLAYERS_INFO_WIDTH,
                 ConstantWindow.PLAYERS_INFO_HEIGHT);
 
-
         omokEdge = getEdge();
         omokBlock = getBlock();
         omokBlockHalf = omokBlock / 2;
@@ -101,7 +100,6 @@ public class Window extends PApplet {
         oppoDiceX = getOppoDiceX();
         oppoDiceY = getOppoDiceY();
         diceDiameter = getDiecDiameter();
-
 
         gameResultX = getGameResultX();
         gameResultY = getGameResultY();
@@ -198,6 +196,7 @@ public class Window extends PApplet {
                     makeDices();
                     myTurn = diceNum.getMyTurn();
                     setMyColor(myTurn);
+                    setStoneViewsColor();
                     break;
                 case ConstantProtocol.WIN:
                     winCheck = gson.fromJson(data, WinCheck.class);
@@ -264,6 +263,16 @@ public class Window extends PApplet {
 
     }
 
+    private void setStoneViewsColor() {
+        if (myColor == ConstantProtocol.BLACK_STONE) {
+            playersInfo.setMineStoneView(Color.BLACK.getValue());
+            playersInfo.setOpponentStoneView(Color.WHITE.getValue());
+        } else if (myColor == ConstantProtocol.WHITE_STONE) {
+            playersInfo.setMineStoneView(Color.WHITE.getValue());
+            playersInfo.setOpponentStoneView(Color.BLACK.getValue());
+        }
+    }
+
     private void init() {
         myTurn = false;
         winCheck = new WinCheck(false);
@@ -280,6 +289,8 @@ public class Window extends PApplet {
             opponentDice = makeDiceDisable();
         }
         makeReadyButtonGrey();
+
+        playersInfo.stoneViewsInit();
     }
 
     private void setDicesNum(DiceNum diceNum) {
