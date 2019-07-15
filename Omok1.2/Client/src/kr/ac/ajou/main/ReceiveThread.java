@@ -40,13 +40,12 @@ public class ReceiveThread extends Thread {
                     break;
                 }
                 int ret = is.read(buf, 0, len);
-
-                // note : 맞는지 확인하기
-//                if (ret == -1) {
-//                    System.out.println("ret error");
-//                    window.exit();
-//                    break;
-//                }
+                if (ret == -1) {
+                    System.out.println("ret error");
+                    window.exit();
+                    break;
+                }
+                
                 String json = new String(buf, 0, ret);
 
                 // Protocol
