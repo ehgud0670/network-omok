@@ -9,13 +9,13 @@
 
 ## Characteristic
 
-#### 1. 기존의 오목을 Processing을 통해 구현하였다. 
+#### 1. 기존의 오목을 Processing을 통해 구현하였습니다. 
 
-* 앱, 웹이외에 에 쉽게 이식할 수 있도록 processing을 통해 표준 코드를 작성하였다. 
+* 앱, 웹이외에 에 쉽게 이식할 수 있도록 processing을 통해 표준 코드를 작성하였습니다. 
 
 ## Distribution
 
-* 안드로이드 앱으로 출시 예정
+* 안드로이드 앱으로 출시 예정입니다.
 
 ## Structure and UI/UX
 
