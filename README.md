@@ -19,7 +19,5 @@
 
 ## Structure and UI/UX
 
-* 기획서 PDF 참조 
-
 <https://github.com/ehgud0670/NetworkOmok/blob/master/%EC%98%A4%EB%AA%A9_%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4.pdf>
 
