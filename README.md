@@ -21,4 +21,3 @@
 
 * 기획서 PPT 참조 
 
-[[부스트캠프]김도형_포트폴리오 (2).pdf](https://github.com/ehgud0670/NetworkOmok/files/3652724/_.2.pdf)
