@@ -19,5 +19,4 @@
 
 ## Structure and UI/UX
 
-<https://github.com/ehgud0670/NetworkOmok/blob/master/%EC%98%A4%EB%AA%A9_%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4.pdf>
-
+<https://github.com/ehgud0670/NetworkOmok/blob/master/networkOmok_portfolio.pdf>
