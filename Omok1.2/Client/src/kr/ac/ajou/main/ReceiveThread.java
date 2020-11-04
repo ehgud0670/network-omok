@@ -12,7 +12,6 @@ import java.net.SocketException;
 
 
 public class ReceiveThread extends Thread {
-
     private static final int MAX_SIZE = 1024;
 
     private Socket socket;

@@ -15,5 +15,4 @@ public class ConstantProtocol {
     public static final String DICE = "DICE";
     public static final String EXIT = "EXIT";
     public static final String WIN = "WIN";
-
 }

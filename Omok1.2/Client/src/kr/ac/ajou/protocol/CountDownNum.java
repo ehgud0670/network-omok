@@ -1,7 +1,6 @@
 package kr.ac.ajou.protocol;
 
 public class CountDownNum {
-
     private int countDownNum;
 
     public CountDownNum(int countDownNum) {

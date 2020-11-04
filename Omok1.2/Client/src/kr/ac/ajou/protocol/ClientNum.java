@@ -1,7 +1,6 @@
 package kr.ac.ajou.protocol;
 
 public class ClientNum {
-
     public static final int ONE = 1;
     public static final int TWO = 2;
 

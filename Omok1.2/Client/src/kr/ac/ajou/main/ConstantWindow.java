@@ -23,7 +23,6 @@ class ConstantWindow {
     static final int PLAYERS_INFO_WIDTH = 240;
     static final int PLAYERS_INFO_HEIGHT = 140;
 
-
     static final String READY_BUTTON_LABEL = "Ready";
     static final String EXIT_BUTTON_LABEL = "Exit";
 }

@@ -14,7 +14,6 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Window extends PApplet {
-
     private int omokEdge;
     private int omokBlock;
     private int omokBlockHalf;

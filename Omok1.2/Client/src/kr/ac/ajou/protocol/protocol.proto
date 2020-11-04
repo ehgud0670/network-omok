@@ -1,0 +1,39 @@
+syntax = "proto3";
+option java_outer_classname = "Protos";
+
+message ClientNum {
+  int32 clientNum = 1;
+}
+
+message CountDownNum {
+  int32 countDownNum = 1;
+}
+
+message DiceNum {
+  int32 myDiceNum = 1;
+  int32 opponentDiceNum = 2;
+  bool myTurn = 3;
+}
+
+message GameState {
+  int32 gameState = 1;
+}
+
+message Protocol {
+  bytes data = 1;
+  bytes type = 2;
+}
+
+message ReadyData {
+  int32 readyNum = 1;
+}
+
+message StoneLocation {
+  int32 row = 1;
+  int32 col = 2;
+  int32 color = 3;
+}
+
+message WinCheck {
+  bool winCheck = 1;
+}

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61024fa6-699a-48b3-8af9-3a095ebb4cfb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/dir/protobuf-java-3.8.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/dir/protobuf-java-3.8.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/client/protocol/ProtocolProtos.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +15,9 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Omok1.2" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -25,37 +25,31 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>ready</find>
-      <find>readybutton</find>
-      <find>GREY</find>
-      <find>PL</find>
-      <find>pressed</find>
-      <find>player</find>
-      <find>ellipse</find>
-      <find>Gson</find>
-      <find>-1</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="809" />
-    <option name="height" value="1055" />
+  <component name="ProjectId" id="1jog8YhXkHPr0RGGfDeSx3xZpFt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Server/dir" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol" />
+      <recent name="$PROJECT_DIR$/Client/src/kr/ac/ajou" />
+      <recent name="$PROJECT_DIR$/Client/src" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="kr.ac.ajou.test" />
       <recent name="kr.ac.ajou" />
@@ -69,7 +63,7 @@
       <recent name="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WindowExample">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.ac.ajou.main.Server" />
       <module name="Server" />
@@ -121,25 +115,25 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="233" key="GridCell.Tab.0.bottom" timestamp="1604473733925">
+    <state width="1398" height="181" key="GridCell.Tab.0.bottom" timestamp="1604482605151">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="233" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604473733925" />
-    <state width="1398" height="233" key="GridCell.Tab.0.center" timestamp="1604473733924">
+    <state width="1398" height="181" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604482605151" />
+    <state width="1398" height="181" key="GridCell.Tab.0.center" timestamp="1604482605149">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="233" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1604473733924" />
-    <state width="1398" height="233" key="GridCell.Tab.0.left" timestamp="1604473733923">
+    <state width="1398" height="181" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1604482605149" />
+    <state width="1398" height="181" key="GridCell.Tab.0.left" timestamp="1604482605149">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="233" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1604473733923" />
-    <state width="1398" height="233" key="GridCell.Tab.0.right" timestamp="1604473733925">
+    <state width="1398" height="181" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1604482605149" />
+    <state width="1398" height="181" key="GridCell.Tab.0.right" timestamp="1604482605150">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="233" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604473733925" />
-    <state x="221" y="63" key="SettingsEditor" timestamp="1604475518507">
+    <state width="1398" height="181" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604482605150" />
+    <state x="221" y="63" key="SettingsEditor" timestamp="1604475826621">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="221" y="63" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1604475518507" />
+    <state x="221" y="63" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1604475826621" />
   </component>
 </project>
