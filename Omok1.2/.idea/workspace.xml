@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61024fa6-699a-48b3-8af9-3a095ebb4cfb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/constant.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/ReceiveThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/ReceiveThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/WinCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/WinCheck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/constant.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/protocol.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +39,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Server/dir" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -60,11 +57,11 @@
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol" />
       <recent name="$PROJECT_DIR$/Server/dir" />
       <recent name="$PROJECT_DIR$/Client/dir" />
       <recent name="$PROJECT_DIR$/Server/src/kr/ac/ajou" />
       <recent name="$PROJECT_DIR$/Client/src/kr/ac/ajou/view" />
-      <recent name="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Server">
