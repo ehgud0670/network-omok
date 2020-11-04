@@ -3,7 +3,6 @@ package kr.ac.ajou.view;
 import processing.core.PApplet;
 
 public class Dice implements Displayable {
-
     private final static int CURVE_VALUE = 20;
 
     private final float rectX;

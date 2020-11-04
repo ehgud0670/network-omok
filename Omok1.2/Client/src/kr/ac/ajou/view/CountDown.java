@@ -4,8 +4,6 @@ import kr.ac.ajou.protocol.CountDownNum;
 import processing.core.PApplet;
 
 public class CountDown implements Displayable {
-
-
     private static final int NONE = 0;
 
     private final int omokPlateLength;
@@ -34,7 +32,7 @@ public class CountDown implements Displayable {
         } else {
             p.fill(Color.BLACK.getValue());
             p.textSize(textSize);
-            p.text(countDownNum.getCountDown(), omokPlateExternalXValue + omokPlateLength / 2, omokPlateExternalYValue + omokPlateLength / 2);
+            p.text(countDownNum.getCountDown(), omokPlateExternalXValue + (omokPlateLength >> 1), omokPlateExternalYValue + omokPlateLength >> 1);
         }
     }
 

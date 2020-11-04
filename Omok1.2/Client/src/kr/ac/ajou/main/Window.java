@@ -141,11 +141,11 @@ public class Window extends PApplet {
     }
 
     private float getGameResultX() {
-        return ConstantWindow.OMOK_EXTERNAL_X_VALUE + ConstantWindow.OMOK_LENGTH / 2;
+        return ConstantWindow.OMOK_EXTERNAL_X_VALUE + (ConstantWindow.OMOK_LENGTH >> 1);
     }
 
     private float getGameResultY() {
-        return ConstantWindow.OMOK_EXTERNAL_Y_VALUE + ConstantWindow.OMOK_LENGTH / 2;
+        return ConstantWindow.OMOK_EXTERNAL_Y_VALUE + (ConstantWindow.OMOK_LENGTH >> 1);
     }
 
     @Override

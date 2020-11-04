@@ -1,7 +1,6 @@
 package kr.ac.ajou.view;
 
 class StoneView{
-
     private int color;
 
     StoneView(int color) {

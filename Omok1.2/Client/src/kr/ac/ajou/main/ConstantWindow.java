@@ -26,6 +26,4 @@ class ConstantWindow {
 
     static final String READY_BUTTON_LABEL = "Ready";
     static final String EXIT_BUTTON_LABEL = "Exit";
-    static final String MY_DICE_LABEL = "Mine";
-    static final String OPPO_DICE_LABEL = "Opponent";
 }

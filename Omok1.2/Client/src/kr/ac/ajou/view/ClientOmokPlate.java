@@ -6,7 +6,6 @@ import processing.core.PApplet;
 
 
 public class ClientOmokPlate implements Displayable {
-
     private static final int NUM = 15;
 
     private final int length;

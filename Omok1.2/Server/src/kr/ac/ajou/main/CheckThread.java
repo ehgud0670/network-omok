@@ -12,9 +12,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-
 public class CheckThread extends Thread {
-
     private static final int FIRST_CLIENT = 0;
     private static final int SECOND_CLIENT = 1;
     private static final int MAX_CLINET_NUM = 2;
@@ -42,10 +40,7 @@ public class CheckThread extends Thread {
 
     @Override
     public void run() {
-
         while (true) {
-
-
             Gson gson = new Gson();
             if (!protocolQueue.isEmpty()) {
                 Protocol protocol = protocolQueue.poll();
@@ -101,9 +96,7 @@ public class CheckThread extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
-
         }
     }
 

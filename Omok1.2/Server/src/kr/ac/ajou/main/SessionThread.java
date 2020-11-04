@@ -14,8 +14,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SessionThread extends Thread {
     private static final int MAX_SIZE = 1024;
-    private static final int CLIENT_ON = 1;
-    private static final int CLIENT_OFF = -1;
 
     private boolean myTurn;
     Queue<Boolean> myTurnQueue = new ConcurrentLinkedQueue<>();
