@@ -10,5 +10,4 @@ public class WinCheck {
     public boolean getWinCheck() {
         return winCheck;
     }
-
 }

@@ -92,6 +92,4 @@ public enum Direction {
 
     abstract int moveRow(int times);
     abstract int moveCol(int times);
-
-
 }

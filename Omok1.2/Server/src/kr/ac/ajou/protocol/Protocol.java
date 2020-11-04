@@ -1,8 +1,6 @@
 package kr.ac.ajou.protocol;
 
 public class Protocol {
-
-
     private String data;
     private String type;
 

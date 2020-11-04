@@ -1,6 +1,7 @@
 package kr.ac.ajou.main;
 
-import com.google.gson.Gson;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 import kr.ac.ajou.protocol.*;
 import kr.ac.ajou.strategy.ServerOmokPlate;
 
@@ -11,21 +12,16 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-
 public class SessionThread extends Thread {
-    private static final int MAX_SIZE = 1024;
-
     private boolean myTurn;
     Queue<Boolean> myTurnQueue = new ConcurrentLinkedQueue<>();
 
     private int clientNum;
-
     private Socket socket;
     private List<Socket> socketList;
     private List<SessionThread> sessionThreadList;
     private ServerOmokPlate omokPlate;
     private CheckThread checkThread;
-
 
     SessionThread(Socket socket, List<Socket> socketList, List<SessionThread> sessionThreadList, CheckThread checkThread) {
         this.socket = socket;
@@ -45,7 +41,6 @@ public class SessionThread extends Thread {
         System.out.println("clientCount: " + CheckThread.getClientCount());
 
         sendClientNum(); // send clientNum to the Client
-
     }
 
     @Override
@@ -53,7 +48,6 @@ public class SessionThread extends Thread {
         try (InputStream is = socket.getInputStream();
              DataInputStream dis = new DataInputStream(is)) {
 
-            byte[] buf = new byte[MAX_SIZE];
             while (true) {
                 int len;
                 try {
@@ -69,29 +63,36 @@ public class SessionThread extends Thread {
                     System.out.println("clientCount: " + CheckThread.getClientCount());
                     break;
                 }
+                byte[] buf = new byte[len];
                 int ret = is.read(buf, 0, len);
-                String json = new String(buf, 0, ret);
 
                 // 객체로 변환하기
-                Gson gson = new Gson();
-                Protocol protocol = gson.fromJson(json, Protocol.class);
+                Protos.Protocol protocol = Protos.Protocol.parseFrom(buf);
+                ByteString data = protocol.getData();
+                ByteString type = protocol.getType();
 
-                String data = protocol.getData();
-                String type = protocol.getType();
+                ConstantsProto.ConstantProtocol.Type typeValue = null;
+                try {
+                    typeValue = ConstantsProto.ConstantProtocol.parseFrom(type).getType();
 
-                switch (type) {
-                    case ConstantProtocol.READY:
-                    case ConstantProtocol.NOT_READY:
+                } catch (InvalidProtocolBufferException e) {
+                    e.printStackTrace();
+                }
+
+                if (typeValue == null) { return; }
+
+                switch (typeValue) {
+                    case READY:
+                    case NOT_READY:
                         checkThread.protocolQueue.add(protocol);
                         break;
-                    case ConstantProtocol.STONE_LOCATION:
-
+                    case STONE_LOCATION:
                         if (!myTurnQueue.isEmpty()) {
                             myTurn = myTurnQueue.poll();
                         }
 
                         if (myTurn) {
-                            Location location = gson.fromJson(data, Location.class);
+                            Protos.StoneLocation location = Protos.StoneLocation.parseFrom(data);
                             int row = location.getRow();
                             int col = location.getCol();
                             int stoneColor = location.getColor();
@@ -103,10 +104,15 @@ public class SessionThread extends Thread {
                                 sendWinInfo();
                                 Thread.sleep(100);
 
-                                GameState gameState = new GameState(GameState.GAME_OVER);
-                                String gameStateData = gson.toJson(gameState);
-                                String gameStateType = ConstantProtocol.GAME_STATE;
-                                protocol = new Protocol(gameStateData, gameStateType);
+                                Protos.GameState gameState = Protos.GameState.newBuilder().setGameState(GameState.GAME_OVER).build();
+                                ByteString gameStateData = gameState.toByteString();
+                                ByteString gameStateType = ConstantsProto.ConstantProtocol.newBuilder()
+                                        .setType(ConstantsProto.ConstantProtocol.Type.GAME_STATE).build().toByteString();
+
+                                protocol = Protos.Protocol.newBuilder()
+                                        .setData(gameStateData)
+                                        .setType(gameStateType)
+                                        .build();
 
                                 checkThread.protocolQueue.add(protocol);
 
@@ -117,10 +123,9 @@ public class SessionThread extends Thread {
                             sendToOtherTurn();
                         }
                         break;
-                    case ConstantProtocol.INIT_STONE:
+                    case INIT_STONE:
                         omokPlate.initStones();
                 }
-
             }
         } catch (SocketException e) {
             System.out.println("[클라이언트가 비정상 종료되었습니다.]");
@@ -139,61 +144,71 @@ public class SessionThread extends Thread {
 
     //Network
     private void sendWinInfo() {
-        Gson gson = new Gson();
-        WinCheck winCheck = new WinCheck(true);
+        Protos.WinCheck winCheck = Protos.WinCheck.newBuilder().setWinCheck(true).build();
 
-        String data = gson.toJson(winCheck);
-        String type = ConstantProtocol.WIN;
+        ByteString data = winCheck.toByteString();
+        ByteString type = ConstantsProto.ConstantProtocol.newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.WIN)
+                .build()
+                .toByteString();
 
         sendToClient(data, type);
     }
 
-
     private void sendClientNum() {
+        Protos.ClientNum clientNo = Protos.ClientNum.newBuilder()
+                .setClientNum(clientNum)
+                .build();
 
-        Gson gson = new Gson();
-        ClientNum clientNo = new ClientNum(clientNum);
-
-        String data = gson.toJson(clientNo);
-        String type = ConstantProtocol.CLIENT_NUM_MINE;
+        ByteString data = clientNo.toByteString();
+        ByteString type = ConstantsProto.ConstantProtocol.newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.CLIENT_NUM_MINE)
+                .build()
+                .toByteString();
 
         sendToClient(data, type);
-
-        type = ConstantProtocol.CLIENT_NUM_OTHER;
+        type = ConstantsProto.ConstantProtocol.newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.CLIENT_NUM_OTHER)
+                .build()
+                .toByteString();
         sendToOther(data, type);
-
     }
 
     private void sendExit() {
-
-        String data = "";
-        String type = ConstantProtocol.EXIT;
+        ByteString data = ConstantsProto.ConstantProtocol.newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.READY)
+                .build()
+                .toByteString();
+        ByteString type = ConstantsProto.ConstantProtocol.newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.EXIT)
+                .build()
+                .toByteString();
 
         sendToOther(data, type);
-
     }
 
-
-    private void sendToClient(String data, String type) {
+    private void sendToClient(ByteString data, ByteString type) {
         try {
             OutputStream os = socket.getOutputStream();
             DataOutputStream dos = new DataOutputStream(os);
 
-            Gson gson = new Gson();
-
-            Protocol protocol = new Protocol(data, type);
-            String json = gson.toJson(protocol);
-            int len = json.length();
+            Protos.Protocol protocol = Protos.Protocol
+                    .newBuilder()
+                    .setData(data)
+                    .setType(type)
+                    .build();
+            byte[] bytes = protocol.toByteArray();
+            int len = bytes.length;
 
             dos.writeInt(len);
-            os.write(json.getBytes());
+            os.write(bytes, 0, len);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void sendToOther(String data, String type) {
+    private void sendToOther(ByteString data, ByteString type) {
         for (Socket socket : socketList) {
             if (socket == this.socket) {
                 continue;
@@ -203,50 +218,49 @@ public class SessionThread extends Thread {
                 OutputStream os = socket.getOutputStream();
                 DataOutputStream dos = new DataOutputStream(os);
 
-                Gson gson = new Gson();
-
-                Protocol protocol = new Protocol(data, type);
-                String json = gson.toJson(protocol);
-                int len = json.length();
+                Protos.Protocol protocol = Protos.Protocol
+                        .newBuilder()
+                        .setData(data)
+                        .setType(type)
+                        .build();
+                byte[] bytes = protocol.toByteArray();
+                int len = bytes.length;
 
                 dos.writeInt(len);
-                os.write(json.getBytes());
+                os.write(bytes, 0, len);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void broadcast(String data, String type) {
+    private void broadcast(ByteString data, ByteString type) {
         try {
             for (Socket socket : socketList) {
                 OutputStream os = socket.getOutputStream();
                 DataOutputStream dos = new DataOutputStream(os);
 
-                Gson gson = new Gson();
-
-                Protocol protocol = new Protocol(data, type);
-                String json = gson.toJson(protocol);
-
-                int len = json.length();
+                Protos.Protocol protocol = Protos.Protocol
+                        .newBuilder()
+                        .setData(data)
+                        .setType(type)
+                        .build();
+                byte[] bytes = protocol.toByteArray();
+                int len = bytes.length;
 
                 dos.writeInt(len);
-                os.write(json.getBytes());
-
+                os.write(bytes, 0, len);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
     private void sendToOtherTurn() {
-
         for (SessionThread sessionThread : sessionThreadList) {
             if (sessionThread != this) {
                 sessionThread.myTurnQueue.add(true);
             }
         }
-
     }
 }

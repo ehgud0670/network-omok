@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61024fa6-699a-48b3-8af9-3a095ebb4cfb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/constant.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/protocol.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/ClientOmokPlate.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/ClientOmokPlate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/CheckThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/CheckThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/SessionThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/SessionThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/ClientNum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/ClientNum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/CountDownNum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/CountDownNum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/Protocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/Protocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/ReadyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/ReadyData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/StoneLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/StoneLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/WinCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/protocol/WinCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/strategy/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/strategy/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/strategy/ServerOmokPlate.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/strategy/ServerOmokPlate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/strategy/Stone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/strategy/Stone.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +117,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -120,22 +147,46 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1604485914399" />
-    <state width="1398" height="181" key="GridCell.Tab.0.bottom" timestamp="1604487054168">
+    <state width="1398" height="181" key="GridCell.Tab.0.bottom" timestamp="1604493055849">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="181" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604487054168" />
-    <state width="1398" height="181" key="GridCell.Tab.0.center" timestamp="1604487054167">
+    <state width="1398" height="181" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604493055849" />
+    <state width="1398" height="395" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1604492557593" />
+    <state width="1398" height="181" key="GridCell.Tab.0.center" timestamp="1604493055846">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="181" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1604487054167" />
-    <state width="1398" height="181" key="GridCell.Tab.0.left" timestamp="1604487054166">
+    <state width="1398" height="181" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1604493055846" />
+    <state width="1398" height="395" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1604492557589" />
+    <state width="1398" height="181" key="GridCell.Tab.0.left" timestamp="1604493055843">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="181" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1604487054166" />
-    <state width="1398" height="181" key="GridCell.Tab.0.right" timestamp="1604487054168">
+    <state width="1398" height="181" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1604493055843" />
+    <state width="1398" height="395" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1604492557589" />
+    <state width="1398" height="181" key="GridCell.Tab.0.right" timestamp="1604493055848">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="181" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604487054168" />
+    <state width="1398" height="181" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604493055848" />
+    <state width="1398" height="395" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1604492557592" />
+    <state width="1398" height="314" key="GridCell.Tab.1.bottom" timestamp="1604492839217">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="314" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604492839217" />
+    <state width="1398" height="395" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1604492557600" />
+    <state width="1398" height="314" key="GridCell.Tab.1.center" timestamp="1604492839216">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="314" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1604492839216" />
+    <state width="1398" height="395" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1604492557597" />
+    <state width="1398" height="314" key="GridCell.Tab.1.left" timestamp="1604492839216">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="314" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1604492839216" />
+    <state width="1398" height="395" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1604492557594" />
+    <state width="1398" height="314" key="GridCell.Tab.1.right" timestamp="1604492839217">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="314" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1604492839217" />
+    <state width="1398" height="395" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1604492557598" />
     <state x="221" y="63" key="SettingsEditor" timestamp="1604475826621">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

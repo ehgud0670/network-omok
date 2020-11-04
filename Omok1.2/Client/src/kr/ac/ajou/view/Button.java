@@ -3,7 +3,6 @@ package kr.ac.ajou.view;
 import processing.core.PApplet;
 
 public class Button implements Displayable {
-
     private static final int TEXT_SIZE = 30;
 
     private final float rectX;

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Server {
-
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket();
@@ -25,7 +24,6 @@ public class Server {
                 SessionThread sessionThread = new SessionThread(socket, socketList, sessionThreadList, checkThread);
                 sessionThread.start();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

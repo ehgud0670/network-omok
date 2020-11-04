@@ -101,7 +101,6 @@ public class ClientOmokPlate implements Displayable {
         }
     }
 
-
     public int editPosition(int mousePos) {
 
         int quotient = (mousePos - edge) / block;
@@ -118,7 +117,6 @@ public class ClientOmokPlate implements Displayable {
     public int getIndex(int fixPos) {
         return fixPos / block;
     }
-
 
     public boolean overVertex(int mouseX, int mouseY) {
 
@@ -162,5 +160,4 @@ public class ClientOmokPlate implements Displayable {
             }
         }
     }
-
 }

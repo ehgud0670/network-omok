@@ -1,7 +1,6 @@
 package kr.ac.ajou.protocol;
 
 public class StoneLocation {
-
     private int row;
     private int col;
     private int color;

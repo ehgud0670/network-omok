@@ -162,17 +162,18 @@ public class Window extends PApplet {
         if (!protocolQueue.isEmpty()) {
             Protos.Protocol protocol = protocolQueue.poll();
             ByteString data = protocol.getData();
-            ConstantsProto.ConstantProtocol.Type type = null;
+            ByteString type = protocol.getType();
+            ConstantsProto.ConstantProtocol.Type typeValue = null;
             try {
-                type = ConstantsProto.ConstantProtocol.parseFrom(protocol.getType()).getType();
+                typeValue = ConstantsProto.ConstantProtocol.parseFrom(type).getType();
             } catch (InvalidProtocolBufferException e) {
                 e.printStackTrace();
             }
 
-            if (type == null) { return; }
+            if (typeValue == null) { return; }
 
-            switch (type) {
-                case READY:
+            switch (typeValue) {
+                case GAME_STATE:
                     try {
                         gameState = new GameState(Protos.GameState.parseFrom(data).getGameState());
                         if (gameState.getGameState() == GameState.WAITING) {
@@ -513,9 +514,9 @@ public class Window extends PApplet {
                     .setData(data)
                     .setType(type)
                     .build();
-
             byte[] bytes = protocol.toByteArray();
             int len = bytes.length;
+
             dos.writeInt(len);
             os.write(bytes, 0, len);
         } catch (IOException e) {
