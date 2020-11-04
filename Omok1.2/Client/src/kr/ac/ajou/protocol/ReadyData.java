@@ -1,7 +1,6 @@
 package kr.ac.ajou.protocol;
 
 public class ReadyData {
-
     public static int READY = 1;
     public static int NOT_READY = 2;
 

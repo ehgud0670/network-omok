@@ -3,7 +3,6 @@ package kr.ac.ajou.view;
 import processing.core.PApplet;
 
 public class GameResult implements Displayable {
-
     private static final int TEXT_SIZE = 50;
 
     private final float x;

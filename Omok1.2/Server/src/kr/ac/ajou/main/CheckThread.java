@@ -1,6 +1,7 @@
 package kr.ac.ajou.main;
 
-import com.google.gson.Gson;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 import kr.ac.ajou.Dice;
 import kr.ac.ajou.protocol.*;
 
@@ -12,9 +13,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-
 public class CheckThread extends Thread {
-
     private static final int FIRST_CLIENT = 0;
     private static final int SECOND_CLIENT = 1;
     private static final int MAX_CLINET_NUM = 2;
@@ -29,8 +28,7 @@ public class CheckThread extends Thread {
 
     private List<Socket> socketList;
     //queue
-    Queue<Protocol> protocolQueue = new ConcurrentLinkedQueue<>();
-
+    Queue<Protos.Protocol> protocolQueue = new ConcurrentLinkedQueue<>();
 
     CheckThread(List<Socket> socketList, List<SessionThread> sessionThreadList) {
         gameState = new GameState(GameState.WAITING);
@@ -42,29 +40,41 @@ public class CheckThread extends Thread {
 
     @Override
     public void run() {
-
         while (true) {
-
-
-            Gson gson = new Gson();
             if (!protocolQueue.isEmpty()) {
-                Protocol protocol = protocolQueue.poll();
-                String data = protocol.getData();
-                String type = protocol.getType();
+                Protos.Protocol protocol = protocolQueue.poll();
+                ByteString data = protocol.getData();
+                ByteString type = protocol.getType();
 
-                switch (type) {
-                    case ConstantProtocol.READY:
-                    case ConstantProtocol.NOT_READY:
-                        ReadyData readyData = gson.fromJson(data, ReadyData.class);
-                        readyCount.plusReadyNum(readyData.getReadyNum());
-                        System.out.println("readyCount: " + readyCount.getReadyNum());
+                ConstantsProto.ConstantProtocol.Type typeValue = null;
+                try {
+                    typeValue = ConstantsProto.ConstantProtocol.parseFrom(type).getType();
+                } catch (InvalidProtocolBufferException e) {
+                    e.printStackTrace();
+                }
+
+                if (typeValue == null) { return; }
+                switch (typeValue) {
+                    case READY:
+                    case NOT_READY:
+                        try {
+                            Protos.ReadyData readyData = Protos.ReadyData.parseFrom(data);
+                            readyCount.plusReadyNum(readyData.getReadyNum());
+                            System.out.println("readyCount: " + readyCount.getReadyNum());
+                        } catch (InvalidProtocolBufferException e) {
+                            e.printStackTrace();
+                        }
                         break;
-                    case ConstantProtocol.GAME_STATE:
-                        gameState = gson.fromJson(data, GameState.class);
+                    case GAME_STATE:
+                        try {
+                            Protos.GameState gameState = Protos.GameState.parseFrom(data);
+                            this.gameState = new GameState(gameState.getGameState());
+                        } catch(InvalidProtocolBufferException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println("gameState: " + gameState.getGameState());
                         break;
                 }
-
             }
 
             if (gameState.getGameState() == GameState.WAITING && readyCount.getReadyNum() == 2) {
@@ -75,9 +85,11 @@ public class CheckThread extends Thread {
             if (gameState.getGameState() == GameState.SET_ORDER) {
                 sendCountDown();
             }
+
             if (gameState.getGameState() == GameState.SET_ORDER) {
                 sendDiceNum();
             }
+
             if (gameState.getGameState() == GameState.SET_ORDER) {
                 setGameStateRunning();
                 sendGameState();
@@ -101,12 +113,9 @@ public class CheckThread extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
-
         }
     }
-
 
     private void init() {
         readyCount.setReadyNum(INIT_COUNT);
@@ -116,16 +125,20 @@ public class CheckThread extends Thread {
     }
 
     private void sendCountDown() {
-
-        CountDownNum countDownNum;
-        Gson gson = new Gson();
-        String data;
-        String type;
+        Protos.CountDownNum countDownNum;
+        ByteString data;
+        ByteString type;
         for (int i = 3; i >= 0; i--) {
             if (socketList.size() == MAX_CLINET_NUM) {
-                countDownNum = new CountDownNum(i);
-                data = gson.toJson(countDownNum);
-                type = ConstantProtocol.COUNT_DOWN_NUM;
+                countDownNum = Protos.CountDownNum.newBuilder()
+                        .setCountDownNum(i)
+                        .build();
+                data = countDownNum
+                        .toByteString();
+                type = ConstantsProto.ConstantProtocol.newBuilder()
+                        .setType(ConstantsProto.ConstantProtocol.Type.COUNT_DOWN_NUM)
+                        .build()
+                        .toByteString();
                 broadcast(data, type);
                 if (i != 0) {
                     try {
@@ -142,7 +155,6 @@ public class CheckThread extends Thread {
                 break;
             }
         }
-
     }
 
     private void sendDiceNum() {
@@ -155,52 +167,73 @@ public class CheckThread extends Thread {
                 System.out.println("diceNum2:" + diceNum2);
                 try {
                     //client1
-                    DiceNum clientOneDiceNumInfo;
+                    Protos.DiceNum clientOneDiceNumInfo;
                     boolean clientOneTurn;
 
                     clientOneTurn = diceNum1 > diceNum2;
                     if (clientOneTurn) {
                         sessionThreadList.get(FIRST_CLIENT).myTurnQueue.add(true);
                     }
-                    clientOneDiceNumInfo = new DiceNum(diceNum1, diceNum2, clientOneTurn);
+                    clientOneDiceNumInfo = Protos.DiceNum.newBuilder()
+                            .setMyDiceNum(diceNum1)
+                            .setOpponentDiceNum(diceNum2)
+                            .setMyTurn(clientOneTurn)
+                            .build();
 
-                    Gson gson = new Gson();
-                    String data = gson.toJson(clientOneDiceNumInfo);
-                    String type = ConstantProtocol.DICE;
+                    ByteString data = clientOneDiceNumInfo.toByteString();
+                    ByteString type = ConstantsProto
+                            .ConstantProtocol.newBuilder()
+                            .setType(ConstantsProto.ConstantProtocol.Type.DICE)
+                            .build()
+                            .toByteString();
 
                     OutputStream os = socketList.get(FIRST_CLIENT).getOutputStream();
                     DataOutputStream dos = new DataOutputStream(os);
 
-                    Protocol protocol = new Protocol(data, type);
+                    Protos.Protocol protocol = Protos.Protocol
+                            .newBuilder()
+                            .setData(data)
+                            .setType(type)
+                            .build();
+                    byte[] bytes = protocol.toByteArray();
+                    int len = bytes.length;
 
-                    String json = gson.toJson(protocol);
-
-                    int len = json.length();
                     dos.writeInt(len);
-                    os.write(json.getBytes());
+                    os.write(bytes, 0, len);
 
                     //client2
-                    DiceNum clientTwoDiceNumInfo;
+                    Protos.DiceNum clientTwoDiceNumInfo;
                     boolean clientTwoTurn;
                     clientTwoTurn = diceNum2 > diceNum1;
                     if (clientTwoTurn) {
                         sessionThreadList.get(SECOND_CLIENT).myTurnQueue.add(true);
                     }
-                    clientTwoDiceNumInfo = new DiceNum(diceNum2, diceNum1, clientTwoTurn);
+                    clientTwoDiceNumInfo = Protos.DiceNum.newBuilder()
+                            .setMyDiceNum(diceNum2)
+                            .setOpponentDiceNum(diceNum1)
+                            .setMyTurn(clientTwoTurn)
+                            .build();
 
-                    data = gson.toJson(clientTwoDiceNumInfo);
-                    type = ConstantProtocol.DICE;
+                    data = clientTwoDiceNumInfo.toByteString();
+                    type = ConstantsProto
+                            .ConstantProtocol.newBuilder()
+                            .setType(ConstantsProto.ConstantProtocol.Type.DICE)
+                            .build()
+                            .toByteString();
 
                     os = socketList.get(SECOND_CLIENT).getOutputStream();
                     dos = new DataOutputStream(os);
 
-                    protocol = new Protocol(data, type);
+                    protocol = Protos.Protocol
+                            .newBuilder()
+                            .setData(data)
+                            .setType(type)
+                            .build();
+                    bytes = protocol.toByteArray();
+                    len = bytes.length;
 
-                    json = gson.toJson(protocol);
-
-                    len = json.length();
                     dos.writeInt(len);
-                    os.write(json.getBytes());
+                    os.write(bytes, 0, len);
 
                     Thread.sleep(2000);
                     if (socketList.size() < 2) {
@@ -223,31 +256,34 @@ public class CheckThread extends Thread {
         }
     }
 
-
     private void sendGameState() {
+        ByteString data = Protos.GameState.newBuilder()
+                .setGameState(gameState.getGameState())
+                .build()
+                .toByteString();
+        ByteString type = ConstantsProto.ConstantProtocol.newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.GAME_STATE)
+                .build().toByteString();
 
-        Gson gson = new Gson();
-        String data = gson.toJson(gameState);
-        String type = ConstantProtocol.GAME_STATE;
         broadcast(data, type);
-
     }
 
-    private void broadcast(String data, String type) {
+    private void broadcast(ByteString data, ByteString type) {
         try {
             for (Socket socket : socketList) {
                 OutputStream os = socket.getOutputStream();
                 DataOutputStream dos = new DataOutputStream(os);
 
-                Gson gson = new Gson();
-
-                Protocol protocol = new Protocol(data, type);
-                String json = gson.toJson(protocol);
-                int len = json.length();
+                Protos.Protocol protocol = Protos.Protocol
+                        .newBuilder()
+                        .setData(data)
+                        .setType(type)
+                        .build();
+                byte[] bytes = protocol.toByteArray();
+                int len = bytes.length;
 
                 dos.writeInt(len);
-                os.write(json.getBytes());
-
+                os.write(bytes, 0, len);
             }
         } catch (IOException e) {
             e.printStackTrace();

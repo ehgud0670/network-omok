@@ -4,9 +4,7 @@ package kr.ac.ajou.view;
 import kr.ac.ajou.protocol.ConstantProtocol;
 import processing.core.PApplet;
 
-
 public class ClientOmokPlate implements Displayable {
-
     private static final int NUM = 15;
 
     private final int length;
@@ -103,7 +101,6 @@ public class ClientOmokPlate implements Displayable {
         }
     }
 
-
     public int editPosition(int mousePos) {
 
         int quotient = (mousePos - edge) / block;
@@ -120,7 +117,6 @@ public class ClientOmokPlate implements Displayable {
     public int getIndex(int fixPos) {
         return fixPos / block;
     }
-
 
     public boolean overVertex(int mouseX, int mouseY) {
 
@@ -164,5 +160,4 @@ public class ClientOmokPlate implements Displayable {
             }
         }
     }
-
 }

@@ -3,8 +3,6 @@ package kr.ac.ajou.protocol;
 public class ConstantProtocol {
     public static final int BLACK_STONE = 0;
     public static final int WHITE_STONE = 1;
-    public static final int FIRST_TURN = 2;
-    public static final int SECOND_TURN = 3;
 
     public static final String READY = "READY";
     public static final String NOT_READY = "NOT_READY";
@@ -17,5 +15,4 @@ public class ConstantProtocol {
     public static final String DICE = "DICE";
     public static final String EXIT = "EXIT";
     public static final String WIN = "WIN";
-
 }

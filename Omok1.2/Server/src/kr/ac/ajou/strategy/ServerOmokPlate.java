@@ -4,9 +4,7 @@ import kr.ac.ajou.protocol.ConstantProtocol;
 
 import java.util.Objects;
 
-
 public class ServerOmokPlate {
-
     private static final int NUM = 15;
     private static final int FIRST_TIME = 1;
     private static final int LAST_TIME = 5;
@@ -21,7 +19,6 @@ public class ServerOmokPlate {
         stones = new Stone[NUM][NUM];
         initStones();
     }
-
 
     private boolean checkHasStone(int row, int col) {
         return stones[row][col].getValue() == Stone.NONE_STONE;
@@ -83,5 +80,4 @@ public class ServerOmokPlate {
         }
         return null;
     }
-
 }

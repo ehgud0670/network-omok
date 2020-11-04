@@ -1,7 +1,6 @@
 package kr.ac.ajou.strategy;
 
 class Stone {
-
     static final int NONE_STONE = 0;
     static final int BLACK_STONE = 1;
     static final int WHITE_STONE = 2;
@@ -19,5 +18,4 @@ class Stone {
     void setValue(int value) {
         this.value = value;
     }
-
 }

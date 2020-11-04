@@ -4,7 +4,6 @@ import kr.ac.ajou.protocol.ClientNum;
 import processing.core.PApplet;
 
 public class PlayersInfo implements Displayable {
-
     private static final int TEXT_SIZE = 35;
     private static final int NONE = 0;
 
