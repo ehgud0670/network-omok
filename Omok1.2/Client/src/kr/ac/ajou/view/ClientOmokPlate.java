@@ -4,7 +4,6 @@ package kr.ac.ajou.view;
 import kr.ac.ajou.protocol.ConstantProtocol;
 import processing.core.PApplet;
 
-
 public class ClientOmokPlate implements Displayable {
     private static final int NUM = 15;
 

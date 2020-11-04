@@ -1,0 +1,20 @@
+syntax = "proto3";
+option java_outer_classname = "ConstantsProto";
+
+message ConstantProtocol {
+  Type type = 1;
+
+  enum Type {
+      READY = 0;
+      NOT_READY = 1;
+      STONE_LOCATION = 2;
+      INIT_STONE = 3;
+      GAME_STATE = 4;
+      CLIENT_NUM_MINE = 5;
+      CLIENT_NUM_OTHER = 6;
+      COUNT_DOWN_NUM = 7;
+      DICE = 8;
+      EXIT = 9;
+      WIN = 10;
+  }
+}

@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61024fa6-699a-48b3-8af9-3a095ebb4cfb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/client/protocol/ProtocolProtos.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/constant.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/ReceiveThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/ReceiveThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/WinCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/WinCheck.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,25 +119,37 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="181" key="GridCell.Tab.0.bottom" timestamp="1604482605151">
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1604485914399">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="181" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604482605151" />
-    <state width="1398" height="181" key="GridCell.Tab.0.center" timestamp="1604482605149">
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1604485914399" />
+    <state width="1398" height="181" key="GridCell.Tab.0.bottom" timestamp="1604487054168">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="181" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1604482605149" />
-    <state width="1398" height="181" key="GridCell.Tab.0.left" timestamp="1604482605149">
+    <state width="1398" height="181" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604487054168" />
+    <state width="1398" height="181" key="GridCell.Tab.0.center" timestamp="1604487054167">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="181" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1604482605149" />
-    <state width="1398" height="181" key="GridCell.Tab.0.right" timestamp="1604482605150">
+    <state width="1398" height="181" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1604487054167" />
+    <state width="1398" height="181" key="GridCell.Tab.0.left" timestamp="1604487054166">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="181" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604482605150" />
+    <state width="1398" height="181" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1604487054166" />
+    <state width="1398" height="181" key="GridCell.Tab.0.right" timestamp="1604487054168">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="181" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604487054168" />
     <state x="221" y="63" key="SettingsEditor" timestamp="1604475826621">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="63" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1604475826621" />
+    <state x="426" y="73" key="refactoring.ChangeSignatureDialog" timestamp="1604485978442">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="426" y="73" key="refactoring.ChangeSignatureDialog/0.0.1440.900@0.0.1440.900" timestamp="1604485978442" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1604486702345">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1604486702345" />
   </component>
 </project>

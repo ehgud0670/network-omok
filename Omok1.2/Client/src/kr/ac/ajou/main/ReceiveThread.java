@@ -1,7 +1,6 @@
 package kr.ac.ajou.main;
 
-import com.google.gson.Gson;
-import kr.ac.ajou.protocol.Protocol;
+import kr.ac.ajou.protocol.Protos;
 
 import java.io.DataInputStream;
 import java.io.EOFException;
@@ -10,10 +9,7 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.net.SocketException;
 
-
 public class ReceiveThread extends Thread {
-    private static final int MAX_SIZE = 1024;
-
     private Socket socket;
     private Window window;
 
@@ -26,9 +22,7 @@ public class ReceiveThread extends Thread {
     public void run() {
         try (InputStream is = socket.getInputStream();
              DataInputStream dis = new DataInputStream(is)) {
-            byte[] buf = new byte[MAX_SIZE];
             while (true) {
-
                 int len;
                 try {
                     len = dis.readInt();
@@ -37,18 +31,15 @@ public class ReceiveThread extends Thread {
                     window.exit();
                     break;
                 }
+                byte[] buf = new byte[len];
                 int ret = is.read(buf, 0, len);
                 if (ret == -1) {
                     System.out.println("ret error");
                     window.exit();
                     break;
                 }
-                
-                String json = new String(buf, 0, ret);
-
                 // Protocol
-                Gson gson = new Gson();
-                Protocol protocol = gson.fromJson(json, Protocol.class);
+                Protos.Protocol protocol = Protos.Protocol.parseFrom(buf);
                 window.protocolQueue.add(protocol);
             }
         } catch (SocketException e) {

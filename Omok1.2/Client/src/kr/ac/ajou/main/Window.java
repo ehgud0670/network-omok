@@ -1,6 +1,7 @@
 package kr.ac.ajou.main;
 
-import com.google.gson.Gson;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 import kr.ac.ajou.protocol.*;
 import kr.ac.ajou.view.*;
 import processing.core.PApplet;
@@ -57,7 +58,7 @@ public class Window extends PApplet {
 
     //queue
     // TODO : Queue 를 하나로 통일할 것. => 일급객체를 사용할 것.
-    Queue<Protocol> protocolQueue = new ConcurrentLinkedQueue<>();
+    Queue<Protos.Protocol> protocolQueue = new ConcurrentLinkedQueue<>();
 
 
     @Override
@@ -159,60 +160,90 @@ public class Window extends PApplet {
         checkMouseCursor();
 
         if (!protocolQueue.isEmpty()) {
-            Protocol protocol = protocolQueue.poll();
-            String data = protocol.getData();
-            String type = protocol.getType();
+            Protos.Protocol protocol = protocolQueue.poll();
+            ByteString data = protocol.getData();
+            ConstantsProto.ConstantProtocol.Type type = null;
+            try {
+                type = ConstantsProto.ConstantProtocol.parseFrom(protocol.getType()).getType();
+            } catch (InvalidProtocolBufferException e) {
+                e.printStackTrace();
+            }
 
-            Gson gson = new Gson();
+            if (type == null) { return; }
 
             switch (type) {
-                case ConstantProtocol.GAME_STATE:
-                    gameState = gson.fromJson(data, GameState.class);
-
-                    if (gameState.getGameState() == GameState.WAITING) {
-                        init();
+                case READY:
+                    try {
+                        gameState = new GameState(Protos.GameState.parseFrom(data).getGameState());
+                        if (gameState.getGameState() == GameState.WAITING) {
+                            init();
+                        }
+                        System.out.println("gameState: " + gameState.getGameState());
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
                     }
-
-                    System.out.println("gameState: " + gameState.getGameState());
                     break;
-                case ConstantProtocol.CLIENT_NUM_MINE:
-                    clientNum = gson.fromJson(data, ClientNum.class);
-                    System.out.println("clientNum: " + clientNum.getClientNum());
-                    setPlayersLabel();
+                case CLIENT_NUM_MINE:
+                    try {
+                        clientNum = new ClientNum(Protos.ClientNum.parseFrom(data).getClientNum());
+                        System.out.println("clientNum: " + clientNum.getClientNum());
+                        setPlayersLabel();
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
                     break;
-                case ConstantProtocol.CLIENT_NUM_OTHER:
+                case CLIENT_NUM_OTHER:
                     if (clientNum.getClientNum() == ClientNum.ONE) {
                         playersInfo.setOpponentLabel(PlayersInfo.OPPONENT_LABEL);
                     }
                     break;
-                case ConstantProtocol.COUNT_DOWN_NUM:
-                    CountDownNum countDownNum = gson.fromJson(data, CountDownNum.class);
-                    countDown.setCountDownNum(countDownNum);
+                case COUNT_DOWN_NUM:
+                    try {
+                        CountDownNum countDownNum = new CountDownNum(Protos.CountDownNum.parseFrom(data).getCountDownNum());
+                        countDown.setCountDownNum(countDownNum);
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
                     break;
-                case ConstantProtocol.DICE:
-                    DiceNum diceNum = gson.fromJson(data, DiceNum.class);
-                    setDicesNum(diceNum);
-                    makeDices();
-                    myTurn = diceNum.getMyTurn();
-                    setMyColor(myTurn);
-                    setStoneViewsColor();
+                case DICE:
+                    try {
+                        Protos.DiceNum diceNumForProto = Protos.DiceNum.parseFrom(data);
+                        DiceNum diceNum = new DiceNum(
+                                diceNumForProto.getMyDiceNum(),
+                                diceNumForProto.getOpponentDiceNum(),
+                                diceNumForProto.getMyTurn());
+                        setDicesNum(diceNum);
+                        makeDices();
+                        myTurn = diceNum.getMyTurn();
+                        setMyColor(myTurn);
+                        setStoneViewsColor();
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
                     break;
-                case ConstantProtocol.WIN:
-                    winCheck = gson.fromJson(data, WinCheck.class);
+                case WIN:
+                    try {
+                        winCheck = new WinCheck(Protos.WinCheck.parseFrom(data).getWinCheck());
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
                     break;
-                case ConstantProtocol.STONE_LOCATION:
-                    StoneLocation location = gson.fromJson(data, StoneLocation.class);
-                    int row = location.getRow();
-                    int col = location.getCol();
-                    int stoneColor = location.getColor();
+                case STONE_LOCATION:
+                    try {
+                        Protos.StoneLocation locationForProto = Protos.StoneLocation.parseFrom(data);
+                        int row = locationForProto.getRow();
+                        int col = locationForProto.getCol();
+                        int stoneColor = locationForProto.getColor();
 
-                    omokPlate.recordStone(row, col, stoneColor);
-                    myTurn = myColor != stoneColor;
+                        omokPlate.recordStone(row, col, stoneColor);
+                        myTurn = myColor != stoneColor;
 
-                    System.out.println("row:" + row + " col:" + col);
-
+                        System.out.println("row:" + row + " col:" + col);
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
                     break;
-                case ConstantProtocol.EXIT:
+                case EXIT:
                     if (clientNum.getClientNum() == ClientNum.TWO) {
                         clientNum.setClientNum(ClientNum.ONE);
                         System.out.println("clientNum: " + clientNum.getClientNum());
@@ -220,9 +251,7 @@ public class Window extends PApplet {
                     initOpponentLabel();
                     break;
             }
-
         }
-
 
         switch (gameState.getGameState()) {
             case GameState.WAITING:
@@ -425,62 +454,70 @@ public class Window extends PApplet {
     }
 
     private void sendReady() {
-        ReadyData ready = new ReadyData(ReadyData.READY);
-        Gson gson = new Gson();
+        Protos.ReadyData.Builder readyBuilder = Protos.ReadyData.newBuilder().setReadyNum(ReadyData.READY);
+        ConstantsProto.ConstantProtocol type = ConstantsProto.ConstantProtocol
+                .newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.READY)
+                .build();
 
-        String data = gson.toJson(ready);
-        String type = ConstantProtocol.READY;
-
-        sendToServer(data, type);
+        sendToServer(readyBuilder.build().toByteString(), type.toByteString());
     }
 
     private void sendNotReady() {
-        ReadyData notReady = new ReadyData(ReadyData.NOT_READY);
-        Gson gson = new Gson();
+        Protos.ReadyData.Builder readyBuilder = Protos.ReadyData.newBuilder().setReadyNum(ReadyData.NOT_READY);
+        ConstantsProto.ConstantProtocol type = ConstantsProto.ConstantProtocol
+                .newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.NOT_READY)
+                .build();
 
-        String data = gson.toJson(notReady);
-        String type = ConstantProtocol.NOT_READY;
-        sendToServer(data, type);
+        sendToServer(readyBuilder.build().toByteString(), type.toByteString());
     }
 
     private void sendLocation(int row, int col) {
+        Protos.StoneLocation location = Protos.StoneLocation.newBuilder()
+                .setRow(row)
+                .setCol(col)
+                .setColor(myColor)
+                .build();
+        ConstantsProto.ConstantProtocol type = ConstantsProto.ConstantProtocol
+                .newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.STONE_LOCATION)
+                .build();
 
-        StoneLocation location = new StoneLocation(row, col, myColor);
-        Gson gson = new Gson();
+        sendToServer(location.toByteString(), type.toByteString());
 
-        String data = gson.toJson(location);
-        String type = ConstantProtocol.STONE_LOCATION;
-
-        sendToServer(data, type);
         System.out.println("row:" + row);
         System.out.println("col:" + col);
-
     }
 
     private void sendInitStone() {
+        ConstantsProto.ConstantProtocol data = ConstantsProto.ConstantProtocol
+                .newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.READY)
+                .build();
+        ConstantsProto.ConstantProtocol type = ConstantsProto.ConstantProtocol
+                .newBuilder()
+                .setType(ConstantsProto.ConstantProtocol.Type.INIT_STONE)
+                .build();
 
-        String data = "";
-        String type = ConstantProtocol.INIT_STONE;
-
-        sendToServer(data, type);
+        sendToServer(data.toByteString(), type.toByteString());
     }
 
-    private void sendToServer(String data, String type) {
-
+    private void sendToServer(ByteString data, ByteString type) {
         try {
             OutputStream os = socket.getOutputStream();
             DataOutputStream dos = new DataOutputStream(os);
 
-            Gson gson = new Gson();
+            Protos.Protocol protocol = Protos.Protocol
+                    .newBuilder()
+                    .setData(data)
+                    .setType(type)
+                    .build();
 
-            Protocol protocol = new Protocol(data, type);
-            String json = gson.toJson(protocol);
-
-            int len = json.length();
-
+            byte[] bytes = protocol.toByteArray();
+            int len = bytes.length;
             dos.writeInt(len);
-            os.write(json.getBytes());
-
+            os.write(bytes, 0, len);
         } catch (IOException e) {
             e.printStackTrace();
         }
