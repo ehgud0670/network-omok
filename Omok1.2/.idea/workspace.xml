@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61024fa6-699a-48b3-8af9-3a095ebb4cfb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/ConstantWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/ConstantWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/ReceiveThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/ReceiveThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/main/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/ConstantProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/ConstantProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/Protocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/Protocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/ReadyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/ReadyData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/StoneLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol/StoneLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/ClientOmokPlate.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/ClientOmokPlate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/CountDown.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/CountDown.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/Dice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/GameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/GameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/PlayersInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/PlayersInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/Stone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/Stone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/StoneView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/kr/ac/ajou/view/StoneView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/CheckThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/CheckThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/SessionThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/kr/ac/ajou/main/SessionThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/dir/protobuf-java-3.8.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/dir/protobuf-java-3.8.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Server.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,11 +49,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Server/src/kr/ac/ajou" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Server/dir" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="Lombok plugin" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -75,11 +62,11 @@
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Server/dir" />
+      <recent name="$PROJECT_DIR$/Client/dir" />
       <recent name="$PROJECT_DIR$/Server/src/kr/ac/ajou" />
       <recent name="$PROJECT_DIR$/Client/src/kr/ac/ajou/view" />
       <recent name="$PROJECT_DIR$/Client/src/kr/ac/ajou/protocol" />
-      <recent name="$PROJECT_DIR$/Client/src/kr/ac/ajou/main" />
-      <recent name="$PROJECT_DIR$/Server/src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.WindowExample">
@@ -150,90 +137,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="233" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604473733925" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Server</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <state x="221" y="63" key="SettingsEditor" timestamp="1604475518507">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="221" y="63" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1604475518507" />
   </component>
 </project>
